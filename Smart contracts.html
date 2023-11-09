@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crypto Tracker App</title>
+</head>
+<body>
+    <h1>Smart Contract Data</h1>
+    <div id="contractData">
+        Contract Address: <span id="contractAddress"></span><br>
+        Current Balance: <span id="contractBalance"></span> ETH<br>
+        Contract Owner: <span id="contractOwner"></span>
+    </div>
+
+    <h2>Interact with the Smart Contract</h2>
+    <button id="getBalance">Get Contract Balance</button>
+    <button id="getOwner">Get Contract Owner</button>
+
+    <script src="web3.min.js"></script>
+    <script>
+        // Connect to the Ethereum blockchain
+        if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            // Set the provider you want to use (e.g., Infura)
+            web3 = new Web3(new Web3.providers.HttpProvider("https://infura.io/YOUR_INFURA_API_KEY"));
+        }
+
+        // Define the address of the smart contract
+        const contractAddress = "YOUR_SMART_CONTRACT_ADDRESS";
+
+        // Define the ABI (Application Binary Interface) of the smart contract
+        const contractABI = [...]; // Replace with your contract's ABI
+
+        const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+        document.getElementById("getBalance").addEventListener("click", async () => {
+            const balance = await contract.methods.getBalance().call();
+            document.getElementById("contractBalance").textContent = balance;
+        });
+
+        document.getElementById("getOwner").addEventListener("click", async () => {
+            const owner = await contract.methods.getOwner().call();
+            document.getElementById("contractOwner").textContent = owner;
+        });
+
+        document.getElementById("contractAddress").textContent = contractAddress;
+    </script>
+</body>
+</html>
