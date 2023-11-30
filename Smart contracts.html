@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Product Identification System</title>
+    <!-- Add any additional styles or scripts here -->
+</head>
+<body>
+
+    <h1>Fake Product Identification System</h1>
+
+    <div id="productForm">
+        <h2>Product Information</h2>
+        <form id="identificationForm">
+            <label for="productCode">Product Code:</label>
+            <input type="text" id="productCode" name="productCode" required>
+
+            <button type="button" onclick="verifyProduct()">Verify Product</button>
+        </form>
+    </div>
+
+    <div id="verificationResult">
+        <h2>Verification Result</h2>
+        <p id="resultMessage"></p>
+    </div>
+
+    <!-- Include Web3.js or Ethers.js library here -->
+
+    <script>
+        // Include Web3.js or Ethers.js library and connect to the Ethereum network
+
+        // Contract ABI (Application Binary Interface)
+        const contractABI = [
+            // Include your contract ABI here
+        ];
+
+        // Contract address
+        const contractAddress = '0x...'; // Replace with your actual contract address
+
+        // Create a contract instance
+        const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+        function verifyProduct() {
+            // Get the product code from the form
+            const productCode = document.getElementById("productCode").value;
+
+            // Call the smart contract function to verify the product
+            contract.methods.verifyProduct(productCode).call((error, result) => {
+                if (!error) {
+                    const resultMessageElement = document.getElementById("resultMessage");
+                    resultMessageElement.textContent = result ? "Product is genuine and not fake." : "Product is fake or not registered.";
+                } else {
+                    console.error(error);
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
+
