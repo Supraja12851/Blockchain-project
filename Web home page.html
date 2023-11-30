@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Product Identification System</title>
+    <!-- Add any additional styles or scripts here -->
+</head>
+<body>
+
+    <h1>Fake Product Identification System</h1>
+
+    <div id="productForm">
+        <h2>Product Information</h2>
+        <form id="identificationForm">
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" required>
+
+            <label for="productCode">Product Code:</label>
+            <input type="text" id="productCode" name="productCode" required>
+
+            <label for="manufacturer">Manufacturer:</label>
+            <input type="text" id="manufacturer" name="manufacturer" required>
+
+            <button type="button" onclick="verifyProduct()">Verify Product</button>
+        </form>
+    </div>
+
+    <div id="verificationResult">
+        <h2>Verification Result</h2>
+        <p id="resultMessage"></p>
+    </div>
+
+    <!-- Add any additional content or scripts here -->
+
+    <script>
+        function verifyProduct() {
+            // Placeholder for interacting with the blockchain
+            // This is where you would call a smart contract function to verify the product
+
+            // For simplicity, let's assume the product is verified
+            displayVerificationResult("Product is genuine and not fake.");
+        }
+
+        function displayVerificationResult(message) {
+            const resultMessageElement = document.getElementById("resultMessage");
+            resultMessageElement.textContent = message;
+
+            // You can add additional styling or actions based on the verification result
+        }
+    </script>
+
+</body>
+</html>
